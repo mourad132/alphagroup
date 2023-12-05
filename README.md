@@ -190,3 +190,7 @@ The Event Page now renders all the users that have purchased the event tickets, 
 | Profiles | /profiles | Renders All The Profile Cards | /profiles | Profiles Array |
 | Profile | /profiles/:id | Renders A Profile By Id | /profiles/:id | Profile Object
 | Voucher Code | /voucher | Renders the voucher code page | /voucher | N/A
+
+### Implementation
+#### Voucher Code
+Voucher Code API takes only one argument `Event Name` From Admin
