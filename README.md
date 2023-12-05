@@ -1,9 +1,13 @@
 # Alpha Group Documentation
 
+<img src="./Logo.png">
+
 ## Overview
 Alpha group website shows upcoming events held by the company and offers a vareity of training and courses, The Website is Classified into 5 Phases
 
 # Phase 1
+
+<img src="/home/mourad/Desktop/alphagroup/Phase 1.png">
 
 ## Features
 - Add/Delete/Update Events
@@ -45,6 +49,8 @@ Contains:
 - Place
 
 ## Administration Panel
+<img src="./Admin Phase 1.png">
+
 ### Pages
 #### Admin Login Page
 Let's You Login to the admin panel
@@ -86,6 +92,8 @@ You Have to add:
 | Update Event | /events/:id | Renders Event Page With Admin Privlages | Show An Event | Event Object
 
 # Phase 2
+
+<img src="./Phase 2.png">
 
 ## Features
 - Added `Profiles` For Users
@@ -138,8 +146,10 @@ Add A QR Code with a `refrence number` to scan it while entering the event
 
 ## Ticket
 - event
-- refrence number
-- user_id
+- ref_number
+- user
+- checked
+- expired
 
 ## Event (Edit)
 Add New Voucher Codes `Array` To the `Schema`
@@ -148,20 +158,25 @@ Add New Voucher Codes `Array` To the `Schema`
 ## API's
 | API Name | Route | Method | Require Auth| Params|
 |----------|-------|--------|------------ |--------|
-|Voucher Code | /voucher  | POST  | YES | voucher |
+| Assign Ticket | /ticket  | POST  | YES | Ticket |
 | Sign Up | /sign-up | POST | NO | User Object |
 | Login | /log-in | POST | NO | N/A |
 | Profile | /profile | GET | YES | N/A |
 | My Events | /my-events | GET | YES | N/A |
 
 ## Routes
-| Route Name | Path |Description|API Used | Params|
-| -----------|------|------------|--------|-------|
-| My Profile | /profile | Renders The My Profile Page | /profile | User Object
-| My Events | /my-events | Renders My Events Page | /my-events| Events Array |
-| Ticket | /tickets/:id | Renders Ticket Page| Ticket Object|
+| Route Name | Route | Description | Require Auth |  API Used | Params|
+| -----------|------|------------|--------|-------|----|
+| My Profile | /profile | Renders The My Profile Page | YES | /profile | User Object
+| My Events | /my-events | Renders My Events Page | YES |  /my-events| Events Array |
+| Ticket | /tickets/:id | Renders Ticket Page| YES| /tickets/:id | Ticket Object|
+| Sign Up | /sign-up | Renders The Sign Up Page | NO | /sign-up | User Object |
+| Log In | /log-in | Renders The Login Page | NO | /log-in | Email , Password | 
+
 
 ## Admin
+<img src="./Admin Phase 2.png">
+
 ### Pages
 #### Ticket Scanning
 This Page Allows the admin to scan Ticket QR Codes Or Enter The Refrence Number
@@ -179,8 +194,10 @@ The Event Page now renders all the users that have purchased the event tickets, 
 |----------|-------|--------|------------ |--------|
 |Profiles | /profiles  | GET  | YES | Profiles Array |
 | Profile | /profiles/:id | GET | YES | Profile Object |
-| Voucher Code | /voucher | GET | YES | N/A |
-| Voucher Code | /voucher | POST | YES | Voucher
+| Tickets | /tickets | GET | YES | Tickets Array |
+| New Ticket | /tickets/new | POST | YES | Event Name
+| Event | /events/:id | GET | YES | Event |
+
 
 
 ### Routes
@@ -192,5 +209,32 @@ The Event Page now renders all the users that have purchased the event tickets, 
 | Voucher Code | /voucher | Renders the voucher code page | /voucher | N/A
 
 ### Implementation
+
 #### Voucher Code
-Voucher Code API takes only one argument `Event Name` From Admin
+
+#### Create New Voucher
+1) Create A New Refrence Number `EVE-12345678` And Make Sure It is Unique
+2) Voucher API Creates a new `Ticket` Object
+
+#### Assign Voucher (Create A Ticket For User)
+1) Search For The `Refrence Number`
+2) Check If It Exists And:
+- Doesn't Belong To Any User 
+- `Ticket.user` is `undefined`
+3) Add `User ID` To `Ticket.user`
+4) Add `Refrence Number` To `User.tickets` Array
+ 
+### My Events
+ 1) For Each `Refrence Number` In `User.tickets`
+ - Search For `Event` Using `Refrence Number`
+ - If Event Time Is Over:
+ - Turn `Ticket.expired` to be `true`
+ 2) Return `Events Array`
+
+### Scanning
+1) Search For The `Ticket` Using `Refrence Code`
+2) Check If `Ticket.checked` is `true`
+- Return `Ticket Has Already Been Checked` And The `User Object` 
+3) If `Ticket.checked` is `false` 
+- Turn `Ticket.checked` to be `true`
+- Return `Ticket Has Been Successfully Checked` And The `User Object`
