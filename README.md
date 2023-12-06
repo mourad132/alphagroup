@@ -109,7 +109,7 @@ You Have to add:
 
 # Phase 2
 
-<img src="./Phase 2.png">
+<img src="./Phase 2.png">       
 
 ## Features
 - Added `Profiles` For Users
