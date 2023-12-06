@@ -17,10 +17,14 @@ Alpha group website shows upcoming events held by the company and offers a varei
 ## Pages
 
 ### Landing Page
+<img src="./Landing Page.png">
+
 Contains: 
 - Logos
 - Login / Sign Up Button
 ### Home Page
+<img src="./Home Page.png">
+
 Contains:
 - Introducing Video
 - About Us
@@ -28,12 +32,24 @@ Contains:
 - Our Partners
 - Footer
 
+### Events Page
+<img src="./Events Page.png">
+
+Contains:
+- Filter Option
+- Events Cards
+- Footer
+
 ### Event Page
+<img src="./Event Page.png">
+
 Contains:
 - Event Card
 - Footer
 
 ### Contact Us
+<img src="./Contact Us Page.png">
+
 Contains: 
 - Contact Us Data
 
@@ -161,8 +177,6 @@ Add New Voucher Codes `Array` To the `Schema`
 | Assign Ticket | /ticket  | POST  | YES | Ticket |
 | Sign Up | /sign-up | POST | NO | User Object |
 | Login | /log-in | POST | NO | N/A |
-| Profile | /profile | GET | YES | N/A |
-| My Events | /my-events | GET | YES | N/A |
 
 ## Routes
 | Route Name | Route | Description | Require Auth |  API Used | Params|
@@ -192,11 +206,7 @@ The Event Page now renders all the users that have purchased the event tickets, 
 ### API's
 | API Name | Route | Method | Requires Admin Auth| Params|
 |----------|-------|--------|------------ |--------|
-|Profiles | /profiles  | GET  | YES | Profiles Array |
-| Profile | /profiles/:id | GET | YES | Profile Object |
-| Tickets | /tickets | GET | YES | Tickets Array |
-| New Ticket | /tickets/new | POST | YES | Event Name
-| Event | /events/:id | GET | YES | Event |
+| New Ticket | /tickets/new | POST | YES | Event Name |
 
 
 
@@ -207,6 +217,8 @@ The Event Page now renders all the users that have purchased the event tickets, 
 | Profiles | /profiles | Renders All The Profile Cards | /profiles | Profiles Array |
 | Profile | /profiles/:id | Renders A Profile By Id | /profiles/:id | Profile Object
 | Voucher Code | /voucher | Renders the voucher code page | /voucher | N/A
+| Tickets | /tickets | GET | YES | Tickets Array |
+| Event | /events/:id | GET | YES | Event |
 
 ### Implementation
 
