@@ -1,7 +1,7 @@
 //Setting Up Express
 const express = require('express');
 const route = express.Router();
-const Events = require('../models/event')
+const Events = require('../models/event');
 
 //Landing Page
 route.get('/', (req, res) => {
@@ -10,26 +10,23 @@ route.get('/', (req, res) => {
 
 //Home Page
 route.get('/home', (req, res) => {
-    Events.find({}, (events, err) => {
-        if(err) throw err;
-        res.render('home', { events });
-    });
-});
+    Events.find({})
+        .then(events => res.send(events))
+        .catch(err => res.send(err))
+})
 
 // Events Page
 route.get('/events', (req, res) => {
-    Event.find({}, (err, events) => {
-        if(err) throw err;
-        escape.render('events', { events });
-    });
-});
+    Events.find({})
+        .then(events => res.render('events', { events }))
+        .catch(err => console.log(err));
+})
 
 // Event Page
 route.get('/events/:id', (req, res) => {
-    Events.findById(req.params.id, (err, event) => {
-        if(err) throw err;
-        res.render('event', { event });
-    });
+    Events.findById(req.params.id)
+        .then(event => res.render('event', { event }))
+        .catch(err => console.log(err));
 });
 
 //Contact Us Page

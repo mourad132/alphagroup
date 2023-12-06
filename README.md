@@ -64,6 +64,12 @@ Contains:
 - Time
 - Place
 
+### Admin
+- username
+- password
+- code
+- permission
+
 ## Administration Panel
 <img src="./Admin Phase 1.png">
 
@@ -106,6 +112,35 @@ You Have to add:
 | Admin Home Page | /home | Renders Home Page With Admin Privlages| Show All Events | Events Array
 | Add Event | /events/add | Rendes Add Events Form | Add Event / Auth | N/A
 | Update Event | /events/:id | Renders Event Page With Admin Privlages | Show An Event | Event Object
+
+## Permission
+Permission Numbers Vary The type of previliges as an admin
+
+### Permission 0
+Has The Heighst Previlige Among All Admins Which Can:
+- Add Events
+- Edit/Update Events
+- Delete Events
+- Create New Tickets
+- See All Profiles
+
+### Permission 1
+Have Many Previliges Which Are:
+- Add Events
+- Edit/Update Events
+- Delete Events
+- See All Profiles
+
+### Permission 2
+Have Control only over events:
+- Add Events
+- Edit/Update Events
+- Delete Events
+
+### Permission 3
+Have The Least Previlige And Can Only
+- Add Events
+- Delete Events
 
 # Phase 2
 
