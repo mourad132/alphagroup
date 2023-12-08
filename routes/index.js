@@ -5,33 +5,31 @@ const Events = require('../models/event');
 
 //Landing Page
 route.get('/', (req, res) => {
-    res.send(req.user);
+    res.send("landing page");
 });
 
 //Home Page
 route.get('/home', (req, res) => {
-    Events.find({})
-        .then(events => res.send(events))
-        .catch(err => res.send(err))
+    res.send('home page')
 })
 
 // Events Page
 route.get('/events', (req, res) => {
     Events.find({})
-        .then(events => res.render('events', { events }))
+        .then(events => res.send(events))
         .catch(err => console.log(err));
 })
 
 // Event Page
 route.get('/events/:id', (req, res) => {
     Events.findById(req.params.id)
-        .then(event => res.render('event', { event }))
+        .then(event => res.send(event))
         .catch(err => console.log(err));
 });
 
 //Contact Us Page
 route.get('/contact-us', (req, res) => {
-    res.render('contact-us');
+    res.send('contact us page');
 })
 
 module.exports = route;

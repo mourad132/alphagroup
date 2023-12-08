@@ -25,7 +25,7 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
 
 //Sign Up Page
 router.get('/sign-up', (req, res) => {
-    res.render('sign-up');
+    res.send('sign-up');
 });
 
 router.post('/sign-up', (req, res) => {
@@ -38,9 +38,11 @@ router.post('/sign-up', (req, res) => {
                 code: req.body.code,
                 permission: req.body.permission
             })
-                .then(admin => console.log(admin))
-                .catch(err => console.log(err))
-        });
+                .then(admin => res.send(admin))
+                .catch(err => res.send(err))
+        }) 
+    } else {
+        res.send('Invalid Registeration Password')
     }
 })
 
