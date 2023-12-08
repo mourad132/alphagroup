@@ -95,23 +95,27 @@ You Have to add:
 ## API's
 | API Name | Route | Method | Require Auth|
 |----------|-------|--------|------------ |
-|Add Event | /events  | POST  | YES |
-|Show All Events|/events|GET| YES |
+|Add Event | /events/create  | POST  | YES |
+|Show All Events|/events |GET| YES |
 |Show One Event|/events/:id|GET| YES |
-|Delete Event|/events/:id|DELETE| YES |
-|Update Event|/events/:id|PUT| YES |
+|Delete Event|/events/delete/:id| POST | YES |
+|Update Event|/events/update/:id| POST | YES |
+| Admin Sign Up | /admin/sign-up | POST | NO
+| Admin Log In | /admin/login | POST | NO
 
 ## Routes
 | Route Name | Path |Description|API Used | Params|
 | -----------|------|------------|--------|-------|
 | Landing | / | Renders The Landing Page | N/A | N/A
 | Home | /home | Renders The Home Page | Show All Events| Events Array|
-| Event | /event/:id | Displays An Event | Show One Event| Event Object|
+| Event | /events/:id | Displays An Event | Show One Event| Event Object|
 | Contact Us | /contact-us | Renders Contact Us Page| N/A| N/A
 | Admin Login | /admin/login | Renders Admin Login Form | N/A | N/A
 | Admin Home Page | /home | Renders Home Page With Admin Privlages| Show All Events | Events Array
 | Add Event | /events/add | Rendes Add Events Form | Add Event / Auth | N/A
 | Update Event | /events/:id | Renders Event Page With Admin Privlages | Show An Event | Event Object
+| Admin Sign Up Page | /admin/sign-up | Renders Admin Sign Up Page | Sign Up | Admin
+| Admin Login Page | /admin/login | Renders Admin Login Page | Login | Username Password
 
 ## Permission
 Permission Numbers Vary The type of previliges as an admin
