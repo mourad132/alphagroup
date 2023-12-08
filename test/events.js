@@ -24,7 +24,7 @@ const newEvent = {
 
 describe("Events CRUD Routes", async () => {
     it("Creates A New Event",  async () => {
-        const res = await axios.post(`${url}/create`, event)
+        const res = await axios.post(`${url}/create/test`, event)
         _id = res.data._id
         assert.include(res.data, event, 'Creates A New Event')
     })

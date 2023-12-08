@@ -1,9 +1,64 @@
 const express = require('express');
-const route = express.Router();
+const router = express.Router();
 const Events = require('../models/event');
+const multer = require('multer');
+const ensureAuthenticated = require('../helpers/index');
+const path = require('path')
+
+// router.use(ensureAuthenticated);
+
+//Disk Storage
+const storageEngine = multer.diskStorage({
+    destination: "./images",
+    filename: (req, file, cb) => {
+      cb(null, `${Date.now()}--${file.originalname}`);
+    },
+});
+
+//Checking File Type
+const checkFileType = function (file, cb) {
+    //Allowed file extensions
+    const fileTypes = /jpeg|jpg|png|gif|svg/;
+  
+    //check extension names
+    const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+  
+    const mimeType = fileTypes.test(file.mimetype);
+  
+    if (mimeType && extName) {
+      return cb(null, true);
+    } else {
+      cb("Error: You can Only Upload Images!!");
+    }
+};
+
+//Multer Upload
+const upload = multer({
+    storage: storageEngine,
+    limits: { fileSize: 10000000 },
+    fileFilter: (req, file, cb) => {
+      checkFileType(file, cb);
+    },
+});
+
 
 // Create New Event
-route.post('/create', (req, res) => {
+router.post('/create', upload.single('image'), (req, res) => {
+    Events.create({
+        name: req.body.name,
+        presentor: req.body.presentor,
+        description: req.body.description,
+        place: req.body.place,
+        date: req.body.date,
+        time: req.body.time,
+        image: req.file.filename,
+    })
+        .then(event => res.send(event))
+        .catch(err => res.send(err))
+});
+
+//Testing Router
+router.post('/create/test', (req, res) => {
     Events.create({
         name: req.body.name,
         presentor: req.body.presentor,
@@ -17,8 +72,9 @@ route.post('/create', (req, res) => {
         .catch(err => res.send(err))
 });
 
+
 //Edit Event
-route.post('/update/:id', async (req, res) => {
+router.post('/update/:id', async (req, res) => {
     const doc = await Events.findOneAndUpdate({ _id: req.params.id }, {
         name: req.body.name,
         presentor: req.body.presentor,
@@ -32,10 +88,10 @@ route.post('/update/:id', async (req, res) => {
 })
 
 //Delete Event
-route.post('/delete/:id', (req, res) => {
+router.post('/delete/:id', (req, res) => {
     Events.findOneAndDelete({_id: req.params.id}, req.body)
         .then(event => res.send(event))
         .catch(err => res.send(err))
 });
 
-module.exports = route;
+module.exports = router;
