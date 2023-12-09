@@ -5,7 +5,7 @@ const Events = require('../models/event');
 
 //Landing Page
 route.get('/', (req, res) => {
-    res.send("landing page");
+    res.render("landing");
 });
 
 //Home Page

@@ -7,7 +7,7 @@ Alpha group website shows upcoming events held by the company and offers a varei
 
 # Phase 1
 
-<img src="/home/mourad/Desktop/alphagroup/Phase 1.png">
+<img src="./Design/Phase 1.png">
 
 ## Features
 - Add/Delete/Update Events
@@ -17,13 +17,13 @@ Alpha group website shows upcoming events held by the company and offers a varei
 ## Pages
 
 ### Landing Page
-<img src="./Landing Page.png">
+<img src="./Design/Landing Page.png">
 
 Contains: 
 - Logos
 - Login / Sign Up Button
 ### Home Page
-<img src="./Home Page.png">
+<img src="./Design/Home Page.png">
 
 Contains:
 - Introducing Video
@@ -33,7 +33,7 @@ Contains:
 - Footer
 
 ### Events Page
-<img src="./Events Page.png">
+<img src="./Design/Events Page.png">
 
 Contains:
 - Filter Option
@@ -41,14 +41,14 @@ Contains:
 - Footer
 
 ### Event Page
-<img src="./Event Page.png">
+<img src="./Design/Event Page.png">
 
 Contains:
 - Event Card
 - Footer
 
 ### Contact Us
-<img src="./Contact Us Page.png">
+<img src="./Design/Contact Us Page.png">
 
 Contains: 
 - Contact Us Data
@@ -70,8 +70,33 @@ Contains:
 - code
 - permission
 
+## Components
+### Navbar
+#### Home Navbar Page
+
+<img src="./Design/Phase 1 Navbar.png">
+
+#### Events Navbar Page
+<img src="./Design/Phase 1 Navbar (1).png">
+
+#### Contact Us Navbar Page
+<img src="./Design/Phase 1 Navbar (2).png">
+
+### Events
+
+#### Event Card
+
+<img src="./Design/Event Card.png">
+
+#### Sort By
+<img src="./Design/Sort By.png">
+
+### Footer
+
+<img src="./Design/Phase 1 Footer.png">
+
 ## Administration Panel
-<img src="./Admin Phase 1.png">
+<img src="./Design/Admin Phase 1.png">
 
 ### Pages
 #### Admin Login Page
@@ -148,7 +173,7 @@ Have The Least Previlige And Can Only
 
 # Phase 2
 
-<img src="./Phase 2.png">       
+<img src="./Design/Phase 2.png">       
 
 ## Features
 - Added `Profiles` For Users
@@ -228,7 +253,7 @@ Add New Voucher Codes `Array` To the `Schema`
 
 
 ## Admin
-<img src="./Admin Phase 2.png">
+<img src="./Design/Admin Phase 2.png">
 
 ### Pages
 #### Ticket Scanning
