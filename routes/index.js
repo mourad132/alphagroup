@@ -10,7 +10,9 @@ route.get('/', (req, res) => {
 
 //Home Page
 route.get('/home', (req, res) => {
-    res.send('home page')
+    Events.find({})
+        .then(events => res.render('home', { events }))
+        .catch(err => console.log(err));
 })
 
 // Events Page

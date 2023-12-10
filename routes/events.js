@@ -9,7 +9,7 @@ const path = require('path')
 
 //Disk Storage
 const storageEngine = multer.diskStorage({
-    destination: "./images",
+    destination: "./public/images",
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}--${file.originalname}`);
     },
@@ -44,6 +44,7 @@ const upload = multer({
 
 // Create New Event
 router.post('/create', upload.single('image'), (req, res) => {
+    console.log(req.body)
     Events.create({
         name: req.body.name,
         presentor: req.body.presentor,

@@ -95,6 +95,10 @@ Contains:
 
 <img src="./Design/Phase 1 Footer.png">
 
+## Colours
+Gold: #C68939;
+Dark Blue: #062AA7;
+
 ## Administration Panel
 <img src="./Design/Admin Phase 1.png">
 
