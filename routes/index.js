@@ -18,7 +18,7 @@ route.get('/home', (req, res) => {
 // Events Page
 route.get('/events', (req, res) => {
     Events.find({})
-        .then(events => res.send(events))
+        .then(events => res.render("events", { events }))
         .catch(err => console.log(err));
 })
 

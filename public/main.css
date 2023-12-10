@@ -1,0 +1,12 @@
+.btn-primary {
+    background-color: #C68939;
+    border-color: black;
+}
+
+.btn-primary:hover {
+    background-color: #062AA7;
+}
+
+.form-select {
+    text-align: right;
+}

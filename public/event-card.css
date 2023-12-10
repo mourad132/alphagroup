@@ -1,7 +1,23 @@
+.container-fluid {
+    flex-wrap: nowrap !important;
+    flex-shrink: 1;
+}
+.card {
+    margin-bottom: 50px;
+}
 .card-body {
     padding: 0;
     padding-top: 16px;
     text-align: right;
+}
+
+input {
+    width: 40vw;
+}
+
+.form-select {
+    width: 40vw;
+    display: inline;
 }
 
 .flexbox {
@@ -20,12 +36,22 @@
 
 .btn-primary {
     background-color: #062AA7;
+    border-color: black;
+}
+
+.btn-primary:hover {
+    background-color: #C68939;
+    border-color: black;
 }
 
 .iconbox {
     display: flex;
     justify-content: space-between;
     padding: 15px;
+}
+
+#icon {
+    width: max-content;
 }
 
 hr {
