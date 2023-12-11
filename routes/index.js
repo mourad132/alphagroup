@@ -2,6 +2,7 @@
 const express = require('express');
 const route = express.Router();
 const Events = require('../models/event');
+const ensureAuthenticated = require('../helpers/index.js')
 
 //Landing Page
 route.get('/', (req, res) => {
@@ -11,14 +12,14 @@ route.get('/', (req, res) => {
 //Home Page
 route.get('/home', (req, res) => {
     Events.find({})
-        .then(events => res.render('home', { events }))
+        .then(events => res.render('home', { events, user: req.user }))
         .catch(err => console.log(err));
 })
 
 // Events Page
-route.get('/events', (req, res) => {
+route.get('/events', ensureAuthenticated, (req, res) => {
     Events.find({})
-        .then(events => res.render("events", { events }))
+        .then(events => res.render("events", { events, user: req.user }))
         .catch(err => console.log(err));
 })
 
@@ -31,7 +32,7 @@ route.get('/events/:id', (req, res) => {
 
 //Contact Us Page
 route.get('/contact-us', (req, res) => {
-    res.send('contact us page');
+    res.render('contact-us', { user: req.user });
 })
 
 module.exports = route;

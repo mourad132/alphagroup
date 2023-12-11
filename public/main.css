@@ -1,6 +1,6 @@
 .btn-primary {
     background-color: #C68939;
-    border-color: black;
+    border-color: #a8793c;
 }
 
 .btn-primary:hover {
@@ -9,4 +9,20 @@
 
 .form-select {
     text-align: right;
+}
+
+.w-100 {
+    width: 100vw;
+    height: 50vh;
+}
+
+video {
+    object-fit: fill;
+}
+
+.partners {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 200px;
 }

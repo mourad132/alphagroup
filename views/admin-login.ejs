@@ -1,2 +1,27 @@
 <%- include('./partials/header.ejs') %>
+<div class="d-flex align-items-center py-4 bg-body-tertiary container">
+    
+<main class="form-signin w-100 m-auto">
+  <form action="/admin/login" method="post">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img class="mb-4" src="../Logo.png" alt="" width="75" height="75" style="margin: 0 auto;">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    </div>
+
+    <div class="form-floating" style="margin-bottom: 30px;">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Admin Username" name="username">
+      <label for="floatingInput">Username</label>
+    </div>
+    <div class="form-floating" style="margin-bottom: 30px;">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+  </form>
+</main>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    
+
+</div>
 <%- include('./partials/footer.ejs') %>

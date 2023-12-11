@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -48,7 +48,7 @@ router.post('/sign-up', (req, res) => {
 
 // Login Page
 router.get('/login', (req, res) => {
-    res.send('login')
+    res.render('admin-login')
 });
 
 //Login Route
@@ -58,11 +58,17 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 //logout Route
-router.post('/logout', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
     req.logout(function(err) {
       if (err) { return next(err); }
       res.redirect('/');
     });
 });
+
+router.get('/', (req, res) => {
+    Admin.find({})
+        .then(admins => res.send(admins))
+        .catch(err => console.log(err))
+})
 
 module.exports = router;
