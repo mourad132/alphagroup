@@ -1,6 +1,10 @@
 <%- include('./partials/header.ejs') %>
-<%- include('./partials/contact-navbar.ejs') %>
-<div class="p-5 text-center bg-body-tertiary rounded-3">
+<% if(user){ %>
+  <%- include('./partials/admin-navbar.ejs') %>
+  <% } else { %>
+  <%- include('./partials/contact-navbar.ejs') %>
+  <% } %>
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
     <h1>تواصل معنا</h1>
     <div class="container flexbox">
     <div class="icon">

@@ -1,9 +1,14 @@
 <link rel="stylesheet" href="event-card.css">
+<h1>المؤتمرات</h1>
 <div class="container flexbox">
     <% events.forEach(event => { %>
     <div class="card" style="width: 25rem;">
         <div class="card-header"><%= event.name %></div>
-        <img src="/images/<%= event.image %>" class="card-img-top" alt="صورة المؤتمر">
+        <% if(event.image){ %>
+          <img src="/images/<%= event.image %>" class="card-img-top" alt="صورة المؤتمر">
+        <% } else { %>
+          <img src="Logo.png" class="card-img-top" alt="صورة المؤتمر">
+        <% } %>
         <hr>
         <div class="card-body iconbox">
             <p class="card-text"><span> <%= event.date %> <img src="calendar.png" alt="" width="25px" height="25px">
@@ -11,7 +16,8 @@
             <p class="card-text"><span> <%= event.time %> <img src="clock.png" alt="" width="25px" height="25px">
             </p></span>
         </div>
-        <div class="card-body iconbox" id="icon">
+        <hr>
+        <div class="card-body iconbox" id="icon" style="width: 100%;">
             <p class="card-text"><span>  <%= event.presentor %> <img src="user.png" alt="" width="25px" height="25px">
             </p>   </span>
             <p class="card-text"><span>    <%= event.place %><img src="placeholder.png" alt="" width="25px" height="25px">
@@ -20,7 +26,7 @@
         <hr>
         <div class="card-body">
           <p class="card-text"><%= event.description %></p>
-          <a href="/events/<%= event._id %>" class="btn btn-primary d-grid gap-2">التفاصيل</a>
+          <a href="/events/<%= event._id %>" class="btn btn-primary d-grid gap-2 btn-block">عرض المؤتمر</a>
         </div>
       </div>
       <% }) %>

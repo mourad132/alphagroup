@@ -1,0 +1,5 @@
+<% if(req.user){ %>
+<%- include('./partials/admin-navbar.ejs') %>
+<% } else { %>
+<%- include('./partials/navbar.ejs') %>
+<% } %>

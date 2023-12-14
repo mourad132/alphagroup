@@ -9,7 +9,7 @@ const logger = require('morgan');
 const passport = require('passport')
 
 // Mongoose Connection
-mongoose.connect("mongodb+srv://mourad132:Momo2005@alphagroup.yb9dnte.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb://localhost:27017/test")
 
 //Setup
 app.set('view engine', 'ejs');

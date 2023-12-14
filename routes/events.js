@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Events = require('../models/event');
 const multer = require('multer');
-const ensureAuthenticated = require('../helpers/index');
+const { ensureAuthenticated } = require('../helpers/index');
 const path = require('path')
-
-// router.use(ensureAuthenticated);
 
 //Disk Storage
 const storageEngine = multer.diskStorage({
@@ -43,8 +41,7 @@ const upload = multer({
 
 
 // Create New Event
-router.post('/create', upload.single('image'), (req, res) => {
-    console.log(req.body)
+router.post('/create', ensureAuthenticated, upload.single('image'), (req, res) => {
     Events.create({
         name: req.body.name,
         presentor: req.body.presentor,
@@ -54,7 +51,7 @@ router.post('/create', upload.single('image'), (req, res) => {
         time: req.body.time,
         image: req.file.filename,
     })
-        .then(event => res.send(event))
+        .then(event => res.redirect(`/events/${event._id}`))
         .catch(err => res.send(err))
 });
 
@@ -74,24 +71,34 @@ router.post('/create/test', (req, res) => {
 });
 
 
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+    Events.findById(req.params.id)
+        .then(event => res.render('create-event', { event }))
+        .catch(err => res.send(err))
+})
+
 //Edit Event
-router.post('/update/:id', async (req, res) => {
-    const doc = await Events.findOneAndUpdate({ _id: req.params.id }, {
-        name: req.body.name,
-        presentor: req.body.presentor,
-        description: req.body.description,
-        place: req.body.place,
-        date: req.body.date,
-        time: req.body.time,
-        image: req.body.image,
-    }, { new: true });
-    res.send(doc)
+router.post('/update/:id', ensureAuthenticated, upload.single('image'), async (req, res) => {
+    Events.findById(req.params.id)
+        .then(async (event) => {
+            const doc = await Events.findOneAndUpdate({ _id: req.params.id }, {
+                name: req.body.name,
+                presentor: req.body.presentor,
+                description: req.body.description,
+                place: req.body.place,
+                date: req.body.date,
+                time: req.body.time,
+                image: req.file.filename || event.image,
+            }, { new: true });
+            res.send(doc)
+        })
+        .catch(err => res.send(err))
 })
 
 //Delete Event
-router.post('/delete/:id', (req, res) => {
+router.post('/delete/:id', ensureAuthenticated, (req, res) => {
     Events.findOneAndDelete({_id: req.params.id}, req.body)
-        .then(event => res.send(event))
+        .then(event => res.redirect('/events'))
         .catch(err => res.send(err))
 });
 

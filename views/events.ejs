@@ -1,4 +1,7 @@
 <%- include('./partials/header.ejs') %>
-<%- include('./partials/events-navbar.ejs') %>
-<%- include('./partials/event-card.ejs') %>
+<% if(user){ %>
+    <%- include('./partials/admin-navbar.ejs') %>
+    <% } else { %>
+    <%- include('./partials/events-navbar.ejs') %>
+    <% } %><%- include('./partials/event-card.ejs') %>
 <%- include('./partials/footer.ejs') %>

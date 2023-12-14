@@ -1,2 +1,41 @@
 <%- include('./partials/header.ejs') %>
+<% if(user){ %>
+    <%- include('./partials/admin-navbar.ejs') %>
+    <% } else { %>
+    <%- include('./partials/events-navbar.ejs') %>
+<% } %>
+<link rel="stylesheet" href="/event-card.css">
+  <div class="container flexbox">
+    <div class="card" style="width: 25rem;">
+        <div class="card-header"><%= event.name %></div>
+        <% if(event.image){ %>
+          <img src="/images/<%= event.image %>" class="card-img-top" alt="صورة المؤتمر">
+        <% } else { %>
+          <img src="Logo.png" class="card-img-top" alt="صورة المؤتمر">
+        <% } %>
+        <hr>
+        <div class="card-body iconbox">
+            <p class="card-text"><span> <%= event.date %> <img src="/calendar.png" alt="" width="25px" height="25px">
+            </p></span>
+            <p class="card-text"><span> <%= event.time %> <img src="/clock.png" alt="" width="25px" height="25px">
+            </p></span>
+        </div>
+        <hr>
+        <div class="card-body iconbox" id="icon" style="width: 100%;">
+            <p class="card-text"><span>  <%= event.presentor %> <img src="/user.png" alt="" width="25px" height="25px">
+            </p>   </span>
+            <p class="card-text"><span>    <%= event.place %><img src="/placeholder.png" alt="" width="25px" height="25px">
+            </p>    </span>
+        </div>
+        <hr>
+        <div class="card-body">
+          <p class="card-text"><%= event.description %></p>
+          <% if(user){ %>
+            <form method="post" action="/events/delete/<%= event._id %>">
+              <button type="submit" class="btn btn-danger d-grid gap-2 btn-block">حذف</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+</div>
 <%- include('./partials/footer.ejs') %>
