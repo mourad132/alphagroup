@@ -51,6 +51,6 @@ app.use('/events', require('./routes/events.js'));
 app.use('/admin', require('./routes/auth.js'));
 
 //Server Listening
-app.listen(3000 || PORTNAME, () => {
-    console.log('Server Is Listening On Port 3000');
+app.listen(80 || process.env.PORT, () => {
+    console.log('Server Is Listening On Port' + process.env.PORT);
 })
